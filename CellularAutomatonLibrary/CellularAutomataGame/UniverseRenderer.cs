@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,8 @@ namespace CellularAutomataGame
 
         Texture2D _aliveTexture;
         Texture2D _deadTexture;
+
+        KeyboardState previousState;
 
         public UniverseRenderer(Universe universe)
         {
@@ -53,6 +56,19 @@ namespace CellularAutomataGame
 
         public void Update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyDown(Keys.Space) && !previousState.IsKeyDown(Keys.Space))
+            {
+                _evolving = !_evolving; 
+            }
+            previousState = state;
+
+            if (state.IsKeyDown(Keys.Space))
+            {
+                _evolving = !_evolving;
+            }
+
             if (gameTime.TotalGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
             {
                 return;
