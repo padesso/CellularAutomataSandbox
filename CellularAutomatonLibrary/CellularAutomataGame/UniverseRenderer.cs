@@ -57,17 +57,11 @@ namespace CellularAutomataGame
         public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
-
             if (state.IsKeyDown(Keys.Space) && !previousState.IsKeyDown(Keys.Space))
             {
                 _evolving = !_evolving; 
             }
             previousState = state;
-
-            if (state.IsKeyDown(Keys.Space))
-            {
-                _evolving = !_evolving;
-            }
 
             if (gameTime.TotalGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
             {
