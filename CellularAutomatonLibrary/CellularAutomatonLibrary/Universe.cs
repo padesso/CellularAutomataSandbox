@@ -39,10 +39,8 @@ namespace CellularAutomatonLibrary
             _tempGrid[x + _width * y].Alive = alive;
         }
 
-        //TODO: Need to create a double buffer so the grid doesn' change during processing
         public void Evolve()
         {
-
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
@@ -80,12 +78,6 @@ namespace CellularAutomatonLibrary
                             SetTempCell(x, y, true);
                         }
                     }
-                    /*
-                        Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-                        Any live cell with two or three live neighbours lives on to the next generation.
-                        Any live cell with more than three live neighbours dies, as if by overpopulation.
-                        Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-                     */
                 }
             }
 
