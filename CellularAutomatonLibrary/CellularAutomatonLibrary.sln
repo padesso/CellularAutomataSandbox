@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellularAutomatonLibrary", "CellularAutomatonLibrary\CellularAutomatonLibrary.csproj", "{1482CAB7-51A1-4317-ADEB-89E55F533730}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellularAutomatonLibrary", "CellularAutomatonLibrary\CellularAutomatonLibrary.csproj", "{1482CAB7-51A1-4317-ADEB-89E55F533730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellularAutomatonTests", "CellularAutomatonTests\CellularAutomatonTests.csproj", "{52B7704C-DABD-4FE2-9803-1A1923398498}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellularAutomatonTests", "CellularAutomatonTests\CellularAutomatonTests.csproj", "{52B7704C-DABD-4FE2-9803-1A1923398498}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellularAutomataGame", "CellularAutomataGame\CellularAutomataGame.csproj", "{E407C903-3ECD-4681-BF76-015DEFCEC09C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{52B7704C-DABD-4FE2-9803-1A1923398498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52B7704C-DABD-4FE2-9803-1A1923398498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52B7704C-DABD-4FE2-9803-1A1923398498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E407C903-3ECD-4681-BF76-015DEFCEC09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E407C903-3ECD-4681-BF76-015DEFCEC09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E407C903-3ECD-4681-BF76-015DEFCEC09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E407C903-3ECD-4681-BF76-015DEFCEC09C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
