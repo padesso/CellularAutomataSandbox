@@ -13,7 +13,7 @@ namespace CellularAutomataGame
         private Universe _universe;
         private bool _evolving;
 
-        private double _evolveTime = 2000; //Time between evolutions in ms
+        private double _evolveTime = 1000; //Time between evolutions in ms
         private double _lastEvolutionTime = 0;
 
         Texture2D _aliveTexture;
@@ -30,9 +30,18 @@ namespace CellularAutomataGame
             _evolving = true;
 
             //TEST DATA
+
+            //Blinker
+            //_universe.SetCell(2, 2, true);
+            //_universe.SetCell(3, 2, true);
+            //_universe.SetCell(4, 2, true);
+
+            //Glider
             _universe.SetCell(2, 2, true);
-            _universe.SetCell(3, 2, true);
-            _universe.SetCell(4, 2, true);
+            _universe.SetCell(3, 3, true);
+            _universe.SetCell(4, 3, true);
+            _universe.SetCell(2, 4, true);
+            _universe.SetCell(3, 4, true);
         }
 
         public void LoadContent(ContentManager content)
@@ -72,13 +81,13 @@ namespace CellularAutomataGame
                         
                         //Just drawing the Sprite
                         spriteBatch.Begin();
-                        spriteBatch.Draw(_aliveTexture, new Rectangle(30 * x, 30 * y, 30, 30), Color.White);
+                        spriteBatch.Draw(_aliveTexture, new Rectangle(10 * x, 10 * y, 10, 10), Color.White);
                         spriteBatch.End();
                     }
                     else
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(_deadTexture, new Rectangle(30 * x, 30 * y, 30, 30), Color.White);
+                        spriteBatch.Draw(_deadTexture, new Rectangle(10 * x, 10 * y, 10, 10), Color.White);
                         spriteBatch.End();
                     }
                 }
