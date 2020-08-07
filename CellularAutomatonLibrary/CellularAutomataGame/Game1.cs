@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CellularAutomatonLibrary;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,6 +10,8 @@ namespace CellularAutomataGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private UniverseRenderer _universeRenderer;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -18,7 +21,7 @@ namespace CellularAutomataGame
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _universeRenderer = new UniverseRenderer(new Universe(50,50));
 
             base.Initialize();
         }
@@ -35,7 +38,7 @@ namespace CellularAutomataGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _universeRenderer.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -44,7 +47,7 @@ namespace CellularAutomataGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _universeRenderer.Draw(gameTime);
 
             base.Draw(gameTime);
         }
