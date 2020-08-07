@@ -21,7 +21,8 @@ namespace CellularAutomataGame
 
         protected override void Initialize()
         {
-            _universeRenderer = new UniverseRenderer(new Universe(50,50));
+            _universeRenderer = new UniverseRenderer(new Universe(10,10));
+            _universeRenderer.Initialize();
 
             base.Initialize();
         }

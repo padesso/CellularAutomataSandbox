@@ -11,9 +11,18 @@ namespace CellularAutomataGame
         private Universe _universe;
         private bool _evolving;
 
+        private double _evolveTime = 1000; //Time between evolutions in ms
+        private double _lastEvolutionTime = 0;
+
         public UniverseRenderer(Universe universe)
         {
             _universe = universe;
+        }
+
+        public void Initialize()
+        {
+            //TODO: control this some other way
+            _evolving = true;
         }
 
         public void LoadContent()
@@ -23,10 +32,16 @@ namespace CellularAutomataGame
 
         public void Update(GameTime gameTime)
         {
-            //TODO: based on some time period, only evolve when it's time to
+            if (gameTime.ElapsedGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
+            {
+                return;
+            }
+
             if(_evolving)
             {
                 _universe.Evolve();
+
+                _lastEvolutionTime = gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 
