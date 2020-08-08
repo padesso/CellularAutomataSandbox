@@ -11,7 +11,7 @@ namespace CellularAutomataGame
 {
     public class UniverseRenderer
     {
-        private const int CELL_SIZE = 10;
+        private const int CELL_SIZE = 16;
 
         private Universe _universe;
         private bool _evolving;
@@ -23,7 +23,6 @@ namespace CellularAutomataGame
         Texture2D _deadTexture;
 
         KeyboardState previousKeyboardState;
-        MouseState previousMouseState;
 
         public UniverseRenderer(Universe universe)
         {
@@ -67,12 +66,11 @@ namespace CellularAutomataGame
             previousKeyboardState = keyboardState;
 
             MouseState mouseState = Mouse.GetState();
-            if(mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            if(mouseState.LeftButton == ButtonState.Pressed)
             {
                 Cell pickedCell = _universe.GetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE);
                 _universe.SetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE, !pickedCell.Alive);
             }
-            previousMouseState = mouseState;
 
             if (gameTime.TotalGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
             {

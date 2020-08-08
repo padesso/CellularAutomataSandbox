@@ -17,11 +17,15 @@ namespace CellularAutomataGame
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            _graphics.PreferredBackBufferWidth = 1280;  // set this value to the desired width of your window
+            _graphics.PreferredBackBufferHeight = 1028;   // set this value to the desired height of your window
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
-            _universeRenderer = new UniverseRenderer(new Universe(50,50));
+            _universeRenderer = new UniverseRenderer(new Universe(80,65));
             _universeRenderer.Initialize();
 
             base.Initialize();
