@@ -26,11 +26,26 @@ namespace CellularAutomatonLibrary
 
         public Cell GetCell(int x, int y)
         {
+            if (x < 0)
+                x = 0;
+
+            if (x > _width - 1)
+                x = _width - 1;
+
+            if (y < 0)
+                y = 0;
+
+            if (y> _height - 1)
+                y = _height - 1;
+
             return _cellGrid[x + _width * y];
         }
 
         public void SetCell(int x, int y, bool alive)
         {
+            if (x < 0 || x > _width - 1 || y < 0 || y > _height - 1)
+                return;
+
             _cellGrid[x + _width * y].Alive = alive;
         }
 

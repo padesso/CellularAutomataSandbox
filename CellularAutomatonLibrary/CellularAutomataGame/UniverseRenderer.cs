@@ -16,7 +16,7 @@ namespace CellularAutomataGame
         private Universe _universe;
         private bool _evolving;
 
-        private double _evolveTime = 1000; //Time between evolutions in ms
+        private double _evolveTime = 100; //Time between evolutions in ms
         private double _lastEvolutionTime = 0;
 
         Texture2D _aliveTexture;
@@ -33,7 +33,7 @@ namespace CellularAutomataGame
         public void Initialize()
         {
             //TODO: control this some other way
-            _evolving = true;
+            _evolving = false;
 
             //TEST DATA
 
