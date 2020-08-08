@@ -38,9 +38,9 @@ namespace CellularAutomataGame
             //TEST DATA
 
             //Blinker
-            //_universe.SetCell(2, 2, true);
-            //_universe.SetCell(3, 2, true);
-            //_universe.SetCell(4, 2, true);
+            _universe.SetCell(14, 15, true);
+            _universe.SetCell(15, 15, true);
+            _universe.SetCell(16, 15, true);
 
             //Glider
             _universe.SetCell(2, 2, true);
