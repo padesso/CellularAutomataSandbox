@@ -11,6 +11,8 @@ namespace CellularAutomataGame
 {
     public class UniverseRenderer
     {
+        private const int CELL_SIZE = 10;
+
         private Universe _universe;
         private bool _evolving;
 
@@ -20,7 +22,8 @@ namespace CellularAutomataGame
         Texture2D _aliveTexture;
         Texture2D _deadTexture;
 
-        KeyboardState previousState;
+        KeyboardState previousKeyboardState;
+        MouseState previousMouseState;
 
         public UniverseRenderer(Universe universe)
         {
@@ -49,19 +52,27 @@ namespace CellularAutomataGame
 
         public void LoadContent(ContentManager content)
         {
-            //TOOD: load some sprites to show live and dead cells
+            //load some sprites to show live and dead cells
             _aliveTexture = content.Load<Texture2D>("Images/greenDot");
             _deadTexture = content.Load<Texture2D>("Images/redDot");
         }
 
         public void Update(GameTime gameTime)
         {
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Space) && !previousState.IsKeyDown(Keys.Space))
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Space) && !previousKeyboardState.IsKeyDown(Keys.Space))
             {
                 _evolving = !_evolving; 
             }
-            previousState = state;
+            previousKeyboardState = keyboardState;
+
+            MouseState mouseState = Mouse.GetState();
+            if(mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            {
+                Cell pickedCell = _universe.GetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE);
+                _universe.SetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE, !pickedCell.Alive);
+            }
+            previousMouseState = mouseState;
 
             if (gameTime.TotalGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
             {
@@ -91,13 +102,13 @@ namespace CellularAutomataGame
                         
                         //Just drawing the Sprite
                         spriteBatch.Begin();
-                        spriteBatch.Draw(_aliveTexture, new Rectangle(10 * x, 10 * y, 10, 10), Color.White);
+                        spriteBatch.Draw(_aliveTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), Color.White);
                         spriteBatch.End();
                     }
                     else
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(_deadTexture, new Rectangle(10 * x, 10 * y, 10, 10), Color.White);
+                        spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), Color.White);
                         spriteBatch.End();
                     }
                 }
