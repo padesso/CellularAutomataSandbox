@@ -16,7 +16,7 @@ namespace CellularAutomataGame
         private Universe _universe;
         private bool _evolving;
 
-        private double _evolveTime = 100; //Time between evolutions in ms
+        private double _evolveTime = 150; //Time between evolutions in ms
         private double _lastEvolutionTime = 0;
 
         Texture2D _aliveTexture;
@@ -63,13 +63,30 @@ namespace CellularAutomataGame
             {
                 _evolving = !_evolving; 
             }
+
+            if (keyboardState.IsKeyDown(Keys.C) && !previousKeyboardState.IsKeyDown(Keys.C))
+            {                
+                Clear();
+            }
+
+            if (keyboardState.IsKeyDown(Keys.R) && !previousKeyboardState.IsKeyDown(Keys.R))
+            {
+                Randomize();
+            }
+
             previousKeyboardState = keyboardState;
 
             MouseState mouseState = Mouse.GetState();
             if(mouseState.LeftButton == ButtonState.Pressed)
             {
                 Cell pickedCell = _universe.GetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE);
-                _universe.SetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE, !pickedCell.Alive);
+                _universe.SetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE, true);
+            }
+
+            if (mouseState.RightButton == ButtonState.Pressed)
+            {
+                Cell pickedCell = _universe.GetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE);
+                _universe.SetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE, false);
             }
 
             if (gameTime.TotalGameTime.TotalMilliseconds - _lastEvolutionTime < _evolveTime)
@@ -82,6 +99,29 @@ namespace CellularAutomataGame
                 _universe.Evolve();
 
                 _lastEvolutionTime = gameTime.TotalGameTime.TotalMilliseconds;
+            }
+        }
+
+        private void Randomize()
+        {
+            Random rand = new Random();
+            for (int y = 0; y < _universe.Height; y++)
+            {
+                for (int x = 0; x < _universe.Width; x++)
+                {
+                    _universe.SetCell(x, y, Convert.ToBoolean(rand.Next(0,2)));
+                }
+            }
+        }
+
+        private void Clear()
+        {
+            for (int y = 0; y < _universe.Height; y++)
+            {
+                for (int x = 0; x < _universe.Width; x++)
+                {
+                    _universe.SetCell(x, y, false);
+                }
             }
         }
 
