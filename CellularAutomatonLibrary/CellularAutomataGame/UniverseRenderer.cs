@@ -20,9 +20,10 @@ namespace CellularAutomataGame
         private double _lastEvolutionTime = 0;
 
         Texture2D _aliveTexture;
-        Texture2D _deadTexture;
+        Texture2D _deadTexture;        
 
         KeyboardState previousKeyboardState;
+        MouseState mouseState;
 
         public UniverseRenderer(Universe universe)
         {
@@ -76,7 +77,7 @@ namespace CellularAutomataGame
 
             previousKeyboardState = keyboardState;
 
-            MouseState mouseState = Mouse.GetState();
+            mouseState = Mouse.GetState();
             if(mouseState.LeftButton == ButtonState.Pressed)
             {
                 Cell pickedCell = _universe.GetCell(mouseState.X / CELL_SIZE, mouseState.Y / CELL_SIZE);
@@ -128,6 +129,7 @@ namespace CellularAutomataGame
         public void Draw(GameTime gameTime, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             spriteBatch = new SpriteBatch(graphicsDevice);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             for (int y = 0; y < _universe.Height; y++)
             {
@@ -139,18 +141,26 @@ namespace CellularAutomataGame
                     {
                         
                         //Just drawing the Sprite
-                        spriteBatch.Begin();
+                        //spriteBatch.Begin();
                         spriteBatch.Draw(_aliveTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), Color.White);
-                        spriteBatch.End();
+                        //spriteBatch.End();
                     }
                     else
                     {
-                        spriteBatch.Begin();
-                        spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), Color.White);
-                        spriteBatch.End();
+                        //spriteBatch.Begin();
+                        spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), new Color(Color.White, 0.15f));
+                        //spriteBatch.End();
                     }
                 }
             }
+
+            //draw a transparent tile where it would select
+            //spriteBatch.Begin();
+            spriteBatch.Draw(_aliveTexture, new Rectangle((int)Math.Round((double)(mouseState.X / CELL_SIZE)) * CELL_SIZE,
+                (int)Math.Round((double)(mouseState.Y / CELL_SIZE)) * CELL_SIZE, 
+                CELL_SIZE, 
+                CELL_SIZE), new Color(Color.White, 0.35f));
+            spriteBatch.End();
         }
     }
 }
