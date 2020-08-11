@@ -35,7 +35,6 @@ namespace CellularAutomataGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             _universeRenderer.LoadContent(Content);
         }
 
@@ -51,7 +50,7 @@ namespace CellularAutomataGame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _universeRenderer.Draw(gameTime, _graphics.GraphicsDevice, _spriteBatch);
 
