@@ -32,7 +32,6 @@ namespace CellularAutomataGame
 
         public void Initialize()
         {
-            //TODO: control this some other way
             _evolving = false;
 
             //TEST DATA
@@ -139,23 +138,16 @@ namespace CellularAutomataGame
 
                     if(tempCell.Alive)
                     {
-                        
-                        //Just drawing the Sprite
-                        //spriteBatch.Begin();
                         spriteBatch.Draw(_aliveTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), Color.White);
-                        //spriteBatch.End();
                     }
                     else
                     {
-                        //spriteBatch.Begin();
                         spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), new Color(Color.White, 0.15f));
-                        //spriteBatch.End();
                     }
                 }
             }
 
             //draw a transparent tile where it would select
-            //spriteBatch.Begin();
             spriteBatch.Draw(_aliveTexture, new Rectangle((int)Math.Round((double)(mouseState.X / CELL_SIZE)) * CELL_SIZE,
                 (int)Math.Round((double)(mouseState.Y / CELL_SIZE)) * CELL_SIZE, 
                 CELL_SIZE, 
