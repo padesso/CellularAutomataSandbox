@@ -52,7 +52,7 @@ namespace CellularAutomataGame
         public void LoadContent(ContentManager content)
         {
             //load some sprites to show live and dead cells
-            _aliveTexture = content.Load<Texture2D>("Images/greenDot");
+            _aliveTexture = content.Load<Texture2D>("Images/SquareCell");
             _deadTexture = content.Load<Texture2D>("Images/redDot");
         }
 
@@ -151,7 +151,7 @@ namespace CellularAutomataGame
             spriteBatch.Draw(_aliveTexture, new Rectangle((int)Math.Round((double)(mouseState.X / CELL_SIZE)) * CELL_SIZE,
                 (int)Math.Round((double)(mouseState.Y / CELL_SIZE)) * CELL_SIZE, 
                 CELL_SIZE, 
-                CELL_SIZE), new Color(Color.White, 0.35f));
+                CELL_SIZE), new Color(Color.Cyan, 0.20f));
             spriteBatch.End();
         }
     }
