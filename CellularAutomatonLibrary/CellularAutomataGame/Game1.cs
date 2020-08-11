@@ -50,7 +50,7 @@ namespace CellularAutomataGame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(new Color(67,70,75));
 
             _universeRenderer.Draw(gameTime, _graphics.GraphicsDevice, _spriteBatch);
 

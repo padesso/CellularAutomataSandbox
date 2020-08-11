@@ -142,7 +142,7 @@ namespace CellularAutomataGame
                     }
                     else
                     {
-                        spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), new Color(Color.White, 0.15f));
+                        //spriteBatch.Draw(_deadTexture, new Rectangle(CELL_SIZE * x, CELL_SIZE * y, CELL_SIZE, CELL_SIZE), new Color(Color.White, 0.15f));
                     }
                 }
             }
